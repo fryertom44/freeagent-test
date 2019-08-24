@@ -22,7 +22,7 @@ class CurrencyExchangeTest < Test::Unit::TestCase
     assert_equal correct_rate, CurrencyExchange.rate(@valid_date, "JPY", "EUR")
   end
 
-  def test_date_not_found
+  def test_rate_not_found
     assert_raise KeyError do
       CurrencyExchange.rate(Date.new(2017,11,22), "JPY", "EUR")
     end
