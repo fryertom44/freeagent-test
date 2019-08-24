@@ -9,31 +9,34 @@ require 'date'
 
 class CurrencyExchangeTest < Test::Unit::TestCase
   def setup
+    @valid_date = Date.new(2018,11,22)
   end
 
   def test_non_base_currency_exchange_is_correct
     correct_rate = 1.2870493690602498
-    assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "GBP", "USD")
+    assert_equal correct_rate, CurrencyExchange.rate(@valid_date, "GBP", "USD")
   end
 
   def test_base_currency_exchange_is_correct
     correct_rate = 0.007763975155279502
-    assert_equal correct_rate, CurrencyExchange.rate(Date.new(2018,11,22), "JPY", "EUR")
+    assert_equal correct_rate, CurrencyExchange.rate(@valid_date, "JPY", "EUR")
   end
 
-  def test_date_comes_before_rates
-    assert_error
+  def test_date_not_found
+    assert_raise KeyError do
+      CurrencyExchange.rate(Date.new(2017,11,22), "JPY", "EUR")
+    end
   end
 
-  def test_date_comes_after_rates
-    assert_error
+  def test_from_currency_not_found
+    assert_raise KeyError do
+      CurrencyExchange.rate(@valid_date, "INVALID_CURRENCY", "EUR")
+    end
   end
 
-  def test_date_comes_between_rates
-    # assert_equal 'use rates from last date
-  end
-
-  def test_date_falls_on_rate
-    # assert_equal 'use rates from last date
+  def test_to_currency_not_found
+    assert_raise KeyError do
+      CurrencyExchange.rate(@valid_date, "USD", "INVALID_CURRENCY")
+    end
   end
 end

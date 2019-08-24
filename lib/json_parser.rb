@@ -8,7 +8,7 @@ module CurrencyExchange
       @path = path
     end
 
-    def hash
+    def output
       obj = File.read(path)
       JSON.parse(obj)
     end
