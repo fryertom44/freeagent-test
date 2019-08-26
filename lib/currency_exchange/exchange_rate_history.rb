@@ -3,10 +3,10 @@ module CurrencyExchange
 
     attr_reader :path_to_file, :base_currency, :rates
 
-    def initialize(path_to_file, base_currency: 'EUR', parser: CurrencyExchange::JsonParser)
+    def initialize(path_to_file, base_currency: 'EUR')
       @path_to_file = path_to_file
       @base_currency = base_currency
-      @rates = parser.new(path_to_file).output
+      @rates = ParserFactory.call(path_to_file).output
     end
 
     def lookup(date, from_currency, to_currency)

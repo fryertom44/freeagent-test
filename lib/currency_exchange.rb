@@ -1,5 +1,6 @@
 module CurrencyExchange
   require_relative 'currency_exchange/exchange_rate_history'
+  require_relative 'currency_exchange/parser_factory'
   require_relative 'currency_exchange/json_parser'
   require_relative 'currency_exchange/run_via_console'
   require 'date'
