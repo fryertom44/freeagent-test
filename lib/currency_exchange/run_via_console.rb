@@ -34,8 +34,8 @@ module CurrencyExchange
       end
     end.parse!
 
-    @@exchange_rate_file = options[:file]
-    rate = CurrencyExchange.rate(*options.values_at(:date, :from, :to))
+   # Exchange rate file used by ExchangeRateHistory
+    @@file_path = options[:file]
 
     if options[:verbose]
       puts <<~HEREDOC
@@ -46,6 +46,7 @@ module CurrencyExchange
       HEREDOC
     end
 
+    rate = CurrencyExchange.rate(*options.values_at(:date, :from, :to))
     puts "=> #{rate}"
 
     rescue StandardError => e

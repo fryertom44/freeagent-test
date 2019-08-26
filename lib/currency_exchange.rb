@@ -13,9 +13,11 @@ module CurrencyExchange
   end
 
   def self.file_path
-    base_dir = File.expand_path(File.join(File.dirname(__FILE__), ".."))
-    data_dir = File.join(base_dir, "data")
-    @@exchange_rate_file ||= File.join(data_dir, "eurofxref-hist-90d.json")
+    @@file_path ||= begin
+      base_dir = File.expand_path(File.join(File.dirname(__FILE__), ".."))
+      data_dir = File.join(base_dir, "data")
+      File.join(data_dir, "eurofxref-hist-90d.json")
+    end
   end
 
     # run via command line
