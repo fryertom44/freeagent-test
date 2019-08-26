@@ -1,7 +1,7 @@
 module CurrencyExchange
   require_relative 'currency_exchange/exchange_rate_history'
   require_relative 'currency_exchange/json_parser'
-  require_relative 'currency_exchange/run'
+  require_relative 'currency_exchange/run_via_console'
   require 'date'
 
   # Return the exchange rate between from_currency and to_currency on date as a float.
@@ -19,6 +19,6 @@ module CurrencyExchange
 
     # run via command line
   if __FILE__ == $0
-    run
+    run_via_console
   end
 end

@@ -11,8 +11,10 @@ class ExchangeRateHistoryTest < Test::Unit::TestCase
         "GBP": 0.88598
       }
     }
-
-    @history = CurrencyExchange::ExchangeRateHistory.new("rates.json")
+    test_file = File.expand_path(
+      File.join(File.dirname(__FILE__), "..", "data", "rates.json")
+    )
+    @history = CurrencyExchange::ExchangeRateHistory.new(test_file)
   end
 
   def test_file_error
